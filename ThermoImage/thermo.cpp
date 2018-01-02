@@ -4,8 +4,8 @@
 
 void _thermo(int min, int max, int c, cv::Vec3b &color) {
 	int level = 6 * c / max;
-	int mod = (6 * c) % max;
-	double theta = mod / (12.0 * max) * CV_PI;
+	int mod = c - level * max / 6;
+	double theta = 3 * CV_PI * mod / max;
 
 	int r, g, b;
 	switch (level)
