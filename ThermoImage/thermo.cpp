@@ -3,9 +3,14 @@
 #include <cmath>
 
 void _thermo(int min, int max, int c, cv::Vec3b &color) {
-	int level = 6 * c / max;
-	int mod = c - level * max / 6;
-	double theta = 3 * CV_PI * mod / max;
+	int value = c - min;
+	int range = max - min + 1;
+
+	int level = 6 * value / range;
+	int mod = value - level * range / 6;
+	double theta = 3 * CV_PI * mod / range;
+
+	if (theta > CV_PI / 2)theta = CV_PI / 2;
 
 	int r, g, b;
 	switch (level)
@@ -53,6 +58,7 @@ void _thermo(int min, int max, int c, cv::Vec3b &color) {
 }
 
 void thermo(cv::Mat &src, cv::Mat &dst) {
+	int min = 256;
 	int max = 0;
 	uchar *sp;
 	cv::Vec3b *dp;
@@ -64,6 +70,9 @@ void thermo(cv::Mat &src, cv::Mat &dst) {
 			if (sp[x] > max) {
 				max = sp[x];
 			}
+			if (sp[x] < min) {
+				min = sp[x];
+			}
 		}
 	}
 
@@ -73,10 +82,10 @@ void thermo(cv::Mat &src, cv::Mat &dst) {
 
 		cv::Vec3b color;
 		for (int x = 0; x < src.cols; x++) {
-			_thermo(0, max, sp[x], color);
+			_thermo(min, max, sp[x], color);
 			dp[x] = color;
 		}
 	}
 
-	printf("max:%d\n", max);
+	printf("min:%d, max:%d\n", min, max);
 }
