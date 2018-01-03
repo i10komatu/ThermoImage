@@ -2,6 +2,13 @@
 
 #include <cmath>
 
+/// <summary>
+/// 輝度を基にチャネルの色を決定する
+/// </summary>
+/// <param name="min">画像の輝度の最小値</param>
+/// <param name="max">画像の輝度の最大値</param>
+/// <param name="c">画素の輝度</param>
+/// <param name="color">画素のポインタ</param>
 void _thermo(int min, int max, int c, cv::Vec3b &color) {
 	int value = c - min;
 	int range = max - min + 1;
