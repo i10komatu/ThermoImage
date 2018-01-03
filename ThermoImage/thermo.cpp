@@ -52,9 +52,9 @@ void _thermo(int min, int max, int c, cv::Vec3b &color) {
 		break;
 	}
 
-	color[0] = b;
-	color[1] = g;
-	color[2] = r;
+	color[0] = round(b);
+	color[1] = round(g);
+	color[2] = round(r);
 }
 
 void thermo(cv::Mat &src, cv::Mat &dst) {
