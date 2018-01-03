@@ -11,6 +11,22 @@
 着色結果  
 ![dst](readme/grad-dst.png)
 
+## 使用方法
+
+```cpp
+#include <opencv2/opencv.hpp>
+#include "thermo.h"
+
+int main() {
+    cv::Mat src, dst;
+
+    src = cv::imread(filename, CV_LOAD_IMAGE_GRAYSCALE);
+    thermo(src, dst);
+
+    return 0;
+}
+```
+
 ## 着色方法
 
 以下の式を用いて各チャネルの値を決定している。  
