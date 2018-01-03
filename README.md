@@ -6,7 +6,12 @@
 ## 例
 
 元画像  
-![src](sample/grad.png)
+![src](readme/grad.png)
 
 着色結果  
-![dst](sample/grad-dst.png)
+![dst](readme/grad-dst.png)
+
+## 着色方法
+
+以下の式を用いて各チャネルの値を決定している。  
+![color](readme/color.png)
